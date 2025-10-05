@@ -29,11 +29,30 @@ This project provides comprehensive analysis and machine learning models for Ele
 
 ### Generated Visualizations
 
-| File | Description | Content |
-|------|-------------|---------|
-| `data_exploration_dashboard.png` | **Data Overview** | Dataset statistics, distributions, correlations |
-| `training_analysis_*.png` | **Training Analysis** | Learning curves, feature importance, predictions |
-| `model_performance_*.png` | **Model Comparison** | Performance metrics, radar charts, best model highlights |
+All visualizations are now organized in the `images/` folder with comprehensive documentation:
+
+| Folder | Description | Files | Content |
+|--------|-------------|-------|---------|
+| `images/data_exploration/` | **Data Overview** | 1 file | Dataset statistics, distributions, correlations |
+| `images/training_analysis/` | **Training Analysis** | 3 files | Learning curves, feature importance, predictions |
+| `images/model_performance/` | **Model Comparison** | 3 files | Performance metrics, radar charts, best model highlights |
+
+#### 📁 Detailed Image Organization
+
+**Data Exploration** (`images/data_exploration/`)
+- `01_dataset_overview_dashboard.png` - Complete dataset analysis and statistical overview
+
+**Training Analysis** (`images/training_analysis/`)
+- `02_consumption_training_analysis.png` - Energy consumption training insights
+- `03_ecr_deviation_training_analysis.png` - ECR deviation training insights  
+- `04_quantity_training_analysis.png` - Trip energy quantity training insights
+
+**Model Performance** (`images/model_performance/`)
+- `05_consumption_model_comparison.png` - Consumption model performance comparison
+- `06_ecr_deviation_model_comparison.png` - ECR deviation model performance comparison
+- `07_quantity_model_comparison.png` - Quantity model performance comparison
+
+Each folder contains detailed README.md files explaining the purpose, content, and insights of every visualization.
 
 ### Data Files
 
@@ -308,12 +327,32 @@ This project is open source and available under the MIT License.
 
 ## 🎨 Visualization Gallery
 
-The enhanced analyzer generates professional-quality visualizations:
+The enhanced analyzer generates professional-quality visualizations, now organized in the `images/` folder:
 
-- **📊 Data Exploration Dashboard**: Complete dataset overview with statistics and distributions
-- **🚀 Training Analysis**: Learning curves, feature importance, and prediction analysis
-- **🎯 Model Performance**: Comprehensive comparison charts with radar plots and best model highlights
-- **📁 High-Quality Output**: 300 DPI PNG images ready for presentations and publications
+### 📊 Data Exploration (`images/data_exploration/`)
+- **Complete Dataset Overview**: Statistics, distributions, correlations, and data quality analysis
+- **Feature Analysis**: Numeric and categorical feature distributions with missing value analysis
+- **Correlation Matrix**: Color-coded heatmap showing inter-feature relationships
+
+### 🚀 Training Analysis (`images/training_analysis/`)
+- **Learning Curves**: Training vs validation performance over data size
+- **Feature Importance**: Random Forest feature rankings for each prediction task
+- **Prediction Analysis**: Scatter plots showing prediction vs actual values
+- **Residual Analysis**: Error patterns and distribution analysis
+- **Training Progress**: Epoch-by-epoch training behavior simulation
+
+### 🎯 Model Performance (`images/model_performance/`)
+- **Comprehensive Metrics**: MAE, RMSE, R², and cross-validation scores
+- **Success Rate Analysis**: Multiple threshold comparisons (±10%, ±15%, ±20%)
+- **Radar Charts**: Multi-dimensional model comparison
+- **Best Model Highlights**: Performance summaries with visual emphasis
+- **Professional Styling**: High-quality 300 DPI images with annotations
+
+### 📁 Organization Benefits
+- **Clear Structure**: Logical categorization by analysis type
+- **Detailed Documentation**: README files explaining each visualization
+- **Easy Navigation**: Sequential numbering and descriptive names
+- **Publication Ready**: Professional quality suitable for reports and presentations
 
 ---
 
