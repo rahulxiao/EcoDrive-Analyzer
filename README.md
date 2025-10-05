@@ -29,28 +29,61 @@ This project provides comprehensive analysis and machine learning models for Ele
 
 ### Generated Visualizations
 
-All visualizations are now organized in the `images/` folder with comprehensive documentation:
+All visualizations are now organized in the `images/` folder with comprehensive documentation. In addition to the dashboard-style images, the project now generates INDIVIDUAL graphs for every panel (data exploration, training analysis, and model performance) under `images/individual_graphs/`.
 
 | Folder | Description | Files | Content |
 |--------|-------------|-------|---------|
-| `images/data_exploration/` | **Data Overview** | 1 file | Dataset statistics, distributions, correlations |
-| `images/training_analysis/` | **Training Analysis** | 3 files | Learning curves, feature importance, predictions |
-| `images/model_performance/` | **Model Comparison** | 3 files | Performance metrics, radar charts, best model highlights |
+| `images/data_exploration/` | **Dashboards** | 1 file | Dataset overview dashboard |
+| `images/training_analysis/` | **Dashboards** | 3 files | Per-task training analysis dashboards |
+| `images/model_performance/` | **Dashboards** | 3 files | Per-task model comparison dashboards |
+| `images/individual_graphs/` | **Individual panels** | many | One PNG per panel, organized by category & task |
 
 #### 📁 Detailed Image Organization
 
 **Data Exploration** (`images/data_exploration/`)
 - `01_dataset_overview_dashboard.png` - Complete dataset analysis and statistical overview
 
+**Individual Data Exploration Panels** (`images/individual_graphs/data_exploration/`)
+- `dataset_overview/01_dataset_statistics.png`
+- `target_distributions/02_consumptionkWh_100km_distribution.png`
+- `target_distributions/02_quantitykWh_distribution.png`
+- `target_distributions/02_ecr_deviation_distribution.png`
+- `correlations/03_feature_correlation_heatmap.png`
+- `missing_values/04_missing_values_analysis.png`
+- `feature_distributions/05_power_distribution.png`
+- `feature_distributions/06_trip_distance_distribution.png`
+- `categorical_distributions/09_city_distribution.png`
+- `categorical_distributions/10_manufacturer_distribution.png`
+- `categorical_distributions/11_model_distribution.png`
+- `categorical_distributions/12_version_distribution.png`
+
 **Training Analysis** (`images/training_analysis/`)
 - `02_consumption_training_analysis.png` - Energy consumption training insights
 - `03_ecr_deviation_training_analysis.png` - ECR deviation training insights  
 - `04_quantity_training_analysis.png` - Trip energy quantity training insights
 
+**Individual Training Analysis Panels** (`images/individual_graphs/training_analysis/`)
+- For each task `{consumption|quantity|ecr_deviation}`:
+  - `data_distribution/05_{task}_target_distribution.png`
+  - `learning_curves/06_{task}_learning_curves.png`
+  - `feature_importance/07_{task}_feature_importance.png`
+  - `predictions/08_{task}_predictions_vs_actual.png`
+  - `residuals/09_{task}_residual_analysis.png`
+
 **Model Performance** (`images/model_performance/`)
 - `05_consumption_model_comparison.png` - Consumption model performance comparison
 - `06_ecr_deviation_model_comparison.png` - ECR deviation model performance comparison
 - `07_quantity_model_comparison.png` - Quantity model performance comparison
+
+**Individual Model Performance Panels** (`images/individual_graphs/model_performance/`)
+- For each task `{consumption|quantity|ecr_deviation}`:
+  - `metrics/10_{task}_mae_comparison.png`
+  - `metrics/11_{task}_r2_comparison.png`
+  - `success_rates/12_{task}_success_rate_10_percent.png`
+  - `success_rates/13_{task}_success_rate_15_percent.png`
+  - `success_rates/14_{task}_success_rate_20_percent.png`
+  - `radar_charts/15_{task}_performance_radar_chart.png`
+  - `best_models/16_{task}_best_model_highlight.png`
 
 Each folder contains detailed README.md files explaining the purpose, content, and insights of every visualization.
 
