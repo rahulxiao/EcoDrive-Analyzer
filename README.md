@@ -2,7 +2,7 @@
 
 ## 📋 Overview
 
-This project provides comprehensive analysis and machine learning models for Electric Vehicle (EV) energy consumption prediction using real-world driving data from Mitsubishi i-MiEV and Volkswagen e-Golf vehicles. The enhanced analyzer now includes **professional-grade visualizations**, **comprehensive training analysis**, and **advanced data exploration dashboards**.
+This project provides comprehensive analysis and machine learning models for Electric Vehicle (EV) energy consumption prediction using real-world driving data from Mitsubishi i-MiEV and Volkswagen e-Golf vehicles. The enhanced analyzer now includes **professional-grade visualizations**, **comprehensive training analysis**, **advanced data exploration dashboards**, **individual graph generation**, and **confusion matrix analysis**.
 
 ## 🎯 Project Goals
 
@@ -29,7 +29,7 @@ This project provides comprehensive analysis and machine learning models for Ele
 
 ### Generated Visualizations
 
-All visualizations are now organized in the `images/` folder with comprehensive documentation. In addition to the dashboard-style images, the project now generates INDIVIDUAL graphs for every panel (data exploration, training analysis, and model performance) under `images/individual_graphs/`.
+All visualizations are now organized in the `images/` folder with comprehensive documentation. In addition to the dashboard-style images, the project now generates **INDIVIDUAL graphs** for every panel (data exploration, training analysis, and model performance) under `images/individual_graphs/`. The enhanced analyzer also creates an `individual/` folder with organized individual graphs and **confusion matrices** for regression analysis.
 
 | Folder | Description | Files | Content |
 |--------|-------------|-------|---------|
@@ -37,6 +37,7 @@ All visualizations are now organized in the `images/` folder with comprehensive 
 | `images/training_analysis/` | **Dashboards** | 3 files | Per-task training analysis dashboards |
 | `images/model_performance/` | **Dashboards** | 3 files | Per-task model comparison dashboards |
 | `images/individual_graphs/` | **Individual panels** | many | One PNG per panel, organized by category & task |
+| `individual/` | **Enhanced individual graphs** | many | Organized individual graphs + confusion matrices |
 
 #### 📁 Detailed Image Organization
 
@@ -85,6 +86,12 @@ All visualizations are now organized in the `images/` folder with comprehensive 
   - `radar_charts/15_{task}_performance_radar_chart.png`
   - `best_models/16_{task}_best_model_highlight.png`
 
+**Enhanced Individual Graphs** (`individual/` folder)
+- **Data Exploration**: `individual/data_exploration/` - Dataset overview, target distributions, correlations, missing values
+- **Training Analysis**: `individual/training_analysis/` - Data distribution, learning curves, feature importance, predictions, residuals
+- **Model Performance**: `individual/model_performance/` - MAE/R² comparisons, success rates, radar charts, best model highlights
+- **Confusion Matrices**: `individual/model_performance/confusion_matrices/` - Binned confusion matrices for best models per task
+
 Each folder contains detailed README.md files explaining the purpose, content, and insights of every visualization.
 
 ### Data Files
@@ -131,6 +138,7 @@ pip install xgboost lightgbm tensorflow
 - **Success Rate Analysis**: Multiple threshold comparisons (±10%, ±15%, ±20%)
 - **Radar Chart**: Multi-dimensional model comparison
 - **Best Model Highlight**: Performance summary with visual emphasis
+- **Confusion Matrices**: Binned confusion matrices for regression analysis
 - **Professional Styling**: High-quality 300 DPI images with emojis and annotations
 
 ## 📈 Performance Results
@@ -195,9 +203,12 @@ pip install xgboost lightgbm tensorflow
 - **Professional Styling**: Consistent color schemes, fonts, and layouts
 - **High-Quality Output**: 300 DPI PNG images for publication quality
 - **Comprehensive Dashboards**: Multi-panel analysis views
+- **Individual Graph Generation**: Separate PNG files for each visualization panel
+- **Confusion Matrix Analysis**: Binned confusion matrices for regression tasks
 - **Interactive Elements**: Value labels, annotations, and statistical overlays
 - **Visual Analytics**: Radar charts, heatmaps, and performance comparisons
 - **Training Insights**: Learning curves, feature importance, and residual analysis
+- **Organized Structure**: Both dashboard and individual graph outputs
 
 ## 🚀 Quick Start
 
@@ -215,6 +226,8 @@ run_analysis.bat
 - **📊 Data Exploration Dashboard**: Complete dataset analysis
 - **🚀 Training Analysis**: Learning curves and model insights for each target
 - **🎯 Performance Comparison**: Comprehensive model evaluation charts
+- **📁 Individual Graphs**: Separate PNG files for each visualization panel
+- **🔍 Confusion Matrices**: Binned confusion matrices for regression analysis
 - **📁 High-Quality Images**: Professional 300 DPI PNG files ready for presentations
 
 ## 📊 Model Comparison
@@ -333,6 +346,9 @@ run_analysis.bat
 3. **Performance Comparison**: Visual metrics make model selection easier
 4. **Professional Presentation**: High-quality images suitable for reports
 5. **Error Analysis**: Residual plots help identify prediction issues
+6. **Individual Analysis**: Separate graphs for detailed examination of each component
+7. **Confusion Matrix Analysis**: Binned confusion matrices for regression model evaluation
+8. **Organized Output**: Both comprehensive dashboards and individual graphs for different use cases
 
 ## 🤝 Contributing
 
@@ -379,6 +395,7 @@ The enhanced analyzer generates professional-quality visualizations, now organiz
 - **Success Rate Analysis**: Multiple threshold comparisons (±10%, ±15%, ±20%)
 - **Radar Charts**: Multi-dimensional model comparison
 - **Best Model Highlights**: Performance summaries with visual emphasis
+- **Confusion Matrices**: Binned confusion matrices for regression analysis
 - **Professional Styling**: High-quality 300 DPI images with annotations
 
 ### 📁 Organization Benefits
@@ -386,7 +403,9 @@ The enhanced analyzer generates professional-quality visualizations, now organiz
 - **Detailed Documentation**: README files explaining each visualization
 - **Easy Navigation**: Sequential numbering and descriptive names
 - **Publication Ready**: Professional quality suitable for reports and presentations
+- **Dual Output System**: Both comprehensive dashboards and individual graphs
+- **Confusion Matrix Analysis**: Specialized regression analysis with binned targets
 
 ---
 
-**Note**: The enhanced model analyzer (`enhanced_model_analyzer.py`) represents the state-of-the-art implementation with the highest success rates achieved in this project, now featuring comprehensive visualization capabilities for professional analysis and presentation.
+**Note**: The enhanced model analyzer (`enhanced_model_analyzer.py`) represents the state-of-the-art implementation with the highest success rates achieved in this project, now featuring comprehensive visualization capabilities, individual graph generation, and confusion matrix analysis for professional analysis and presentation.

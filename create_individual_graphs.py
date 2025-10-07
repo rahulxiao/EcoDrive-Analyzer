@@ -6,6 +6,7 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, V
 from sklearn.linear_model import Ridge, Lasso, ElasticNet
 from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.metrics import confusion_matrix
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_selection import SelectKBest, f_regression
 import matplotlib
@@ -59,7 +60,8 @@ def create_individual_graph_folders():
         'images/individual_graphs/model_performance/metrics',
         'images/individual_graphs/model_performance/success_rates',
         'images/individual_graphs/model_performance/radar_charts',
-        'images/individual_graphs/model_performance/best_models'
+        'images/individual_graphs/model_performance/best_models',
+        'images/individual_graphs/model_performance/confusion_matrices'
     ]
     
     for folder in folders:
@@ -171,6 +173,37 @@ def load_and_preprocess_data():
             df[col] = df[col].fillna(0)
     
     return df
+
+def save_confusion_matrix_binned(y_test, y_pred, task_name, num_bins=6):
+    """Save a confusion matrix by quantile-binning continuous targets and predictions."""
+    y_test = np.asarray(y_test)
+    y_pred = np.asarray(y_pred)
+    if y_test.size == 0:
+        return
+    quantiles = np.linspace(0, 1, num_bins + 1)
+    bin_edges = np.unique(np.quantile(y_test, quantiles))
+    if len(bin_edges) < 3:
+        bin_edges = np.linspace(np.nanmin(y_test), np.nanmax(y_test), num_bins + 1)
+    y_test_bins = np.digitize(y_test, bin_edges[1:-1], right=True)
+    y_pred_bins = np.digitize(y_pred, bin_edges[1:-1], right=True)
+    bin_labels = []
+    for i in range(len(bin_edges) - 1):
+        left = bin_edges[i]
+        right = bin_edges[i + 1]
+        bin_labels.append(f"[{left:.2f}, {right:.2f})" if i < len(bin_edges) - 2 else f"[{left:.2f}, {right:.2f}]")
+    cm = confusion_matrix(y_test_bins, y_pred_bins, labels=list(range(len(bin_labels))))
+    fig, ax = plt.subplots(figsize=(12, 10))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=True,
+                xticklabels=bin_labels, yticklabels=bin_labels, ax=ax)
+    ax.set_title(f'Binned Confusion Matrix - {task_name.title()}\n(Best Model by R²)', fontsize=14, fontweight='bold')
+    ax.set_xlabel('Predicted Bin')
+    ax.set_ylabel('Actual Bin')
+    plt.xticks(rotation=45, ha='right')
+    plt.yticks(rotation=0)
+    plt.tight_layout()
+    plt.savefig(f'images/individual_graphs/model_performance/confusion_matrices/17_{task_name}_confusion_matrix.png', 
+                dpi=300, bbox_inches='tight', facecolor='white')
+    plt.close()
 
 def create_dataset_overview_graphs(df):
     """Create individual dataset overview graphs"""
@@ -745,6 +778,10 @@ def main():
         )
         
         results = {}
+        best_model_name = None
+        best_r2 = -np.inf
+        best_y_test = None
+        best_y_pred = None
         for name, model in all_models.items():
             try:
                 cv_scores = cross_val_score(model, x_train, y_train, cv=5, scoring='r2')
@@ -769,6 +806,11 @@ def main():
                     'CV_R2_Std': cv_scores.std(),
                     **success_rates
                 }
+                if r2 > best_r2:
+                    best_r2 = r2
+                    best_model_name = name
+                    best_y_test = y_test
+                    best_y_pred = y_pred
             except Exception as e:
                 print(f"Error training {name}: {str(e)}")
                 continue
@@ -778,6 +820,9 @@ def main():
         # Create model performance graphs
         if results:
             create_model_performance_graphs(results, task_name)
+            # Save confusion matrix for the best model
+            if best_y_test is not None and best_y_pred is not None:
+                save_confusion_matrix_binned(best_y_test, best_y_pred, task_name)
     
     print("Individual graphs created successfully!")
     print("All graphs saved in images/individual_graphs/ folder")
